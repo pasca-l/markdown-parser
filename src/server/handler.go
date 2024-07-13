@@ -18,21 +18,30 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, "POST method required", http.StatusMethodNotAllowed)
+		return
 	}
 
 	file, fileHeader, err := r.FormFile("file")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 	defer file.Close()
+
+	if filepath.Ext(fileHeader.Filename) != ".md" {
+		http.Error(w, ".md file expected", http.StatusBadRequest)
+		return
+	}
 
 	content, err := io.ReadAll(file)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	parsed, err := parser.ParseMarkdownToHtml(content)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	w.Header().Set("Content-Type", "text/plain")
