@@ -7,7 +7,7 @@ Markdown parser to HTML, using [GitHub REST API endpoint for Markdown](https://d
 
 ## Usage
 1. Start server.
-```bash
+```shell
 $ docker compose up
 ```
 
