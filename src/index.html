@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <h1>Markdown to HTML converter</h1>
+      <p>Converts <code>file.md</code> &rarr; <code>file.html</code></p>
+      <form
+        id="form"
+        enctype="multipart/form-data"
+        action="/upload"
+        method="POST"
+      >
+        <input type="file" name="file" />
+        <!-- <input type="file" name="file" multiple /> -->
+        <button type="submit">convert</button>
+      </form>
+    </div>
+  </body>
+</html>

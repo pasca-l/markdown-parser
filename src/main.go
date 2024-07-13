@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	"github.com/pasca-l/markdown-parser/server"
+)
 
 func main() {
-	fmt.Println("hello world")
+	err := server.Serve()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
