@@ -8,7 +8,8 @@
   <body>
     <div style="text-align: center">
       <h1>Markdown to HTML converter</h1>
-      <p>Converts <code>file.md</code> &rarr; <code>file.html</code></p>
+      Converts <code>file.md</code> &rarr; <code>file.html</code>
+      <hr style="margin: 1.5em" />
       <form
         id="form"
         enctype="multipart/form-data"
@@ -16,6 +17,10 @@
         method="POST"
       >
         <input type="file" name="file" />
+        <p>
+          <input type="checkbox" name="className" />
+          <label for="className">Use <code>className</code></label>
+        </p>
         <button type="submit">convert</button>
       </form>
     </div>

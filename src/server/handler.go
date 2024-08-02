@@ -21,6 +21,12 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	err := r.ParseForm()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
 	file, fileHeader, err := r.FormFile("file")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -38,7 +44,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	parsed, err := parser.ParseMarkdownToHtml(content)
+	parsed, err := parser.ParseMarkdownToHtml(content, r.PostForm)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
